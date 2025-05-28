@@ -1,6 +1,10 @@
 import { useState } from "react"
 import { TodoType } from "../types"
 import { RootState, useSelector } from "../redux/store"
+import { useDispatch } from "react-redux"
+
+import { displayAddTodo } from "../redux/todoSlice"
+
 
 const AddTodo = () => {
   //Local Variables
@@ -17,6 +21,7 @@ const AddTodo = () => {
   )
 
   //Hooks
+  const dispatch = useDispatch()
 
   //Handlers
   const handleSubmit = () => {
@@ -25,6 +30,7 @@ const AddTodo = () => {
     //Debug
     //console.log(newTodo)
   }
+
 
   if (!displayAddModal) return null
 
@@ -81,8 +87,8 @@ const AddTodo = () => {
             <button
               className="flex hover:scale-105 items-center justify-center w-20 bg-amber-200 border-1 m-5"
               // On utilise dispatch pour agir directement sur le store par le biai des reducers que nous avons défini dans notre Slice
-              // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieu le travail
-              onClick={() => console.log("what could we do???")}
+              // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieux le travail
+              onClick={() => dispatch(displayAddTodo(false))} // Ici on ferme la modal
             >
               Back
             </button>

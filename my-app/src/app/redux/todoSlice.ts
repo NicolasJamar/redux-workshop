@@ -43,7 +43,7 @@ const initialState: TodoState = {
 }
 
 const todoSlice = createSlice({
-  // >>>>>>>> Ensuite on créer le Slice en tant que tel, on doit définir son nom, son état initial, et enfin les reucer qui vont permettre d'agir sur l'état initial
+  // >>> Ensuite on créer le Slice en tant que tel, on doit définir son nom, son état initial, et enfin les reducer qui vont permettre d'agir sur l'état initial
   name: "todo",
   initialState,
   reducers: {
@@ -57,9 +57,18 @@ const todoSlice = createSlice({
       state.todos.filter(todo => todo.id !== action.payload)
     },
     //editTodo
+      // editTodo: (state, action: PayloadAction<TodoType>) => { 
+      //   state.todos
+      // },
     //addTodo
+      // addTodo: (state, action: PayloadAction<TodoType>) => {
+      //   state.todos.push(action.payload)
+      // },
     //clearSelectedTodo
     //displayAddTodo
+    displayAddTodo: (state, action: PayloadAction<boolean>) => {
+      state.displayAddTodoModal = action.payload
+    },
     displayEditTodo: (
       state,
       action: PayloadAction<{ id: number; display: boolean }>,
@@ -70,5 +79,5 @@ const todoSlice = createSlice({
 })
 
 // >>>>>>>> Il faut bien penser à exporter ses reducer, sans quoi ils ne serviront à rien
-export const { deleteTodo, selectTodo, displayEditTodo } = todoSlice.actions
+export const { deleteTodo, selectTodo, displayAddTodo, displayEditTodo } = todoSlice.actions
 export default todoSlice.reducer
