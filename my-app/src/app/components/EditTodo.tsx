@@ -1,6 +1,8 @@
 import  { useState } from "react"
 import { TodoType } from "../types"
 import { RootState, useSelector } from "../redux/store"
+import { displayEditTodo, clearSelectedTodo, editTodo } from "../redux/todoSlice"
+import { useDispatch } from "react-redux"
 
 const EditTodo = () => {
   //Selectors
@@ -20,14 +22,20 @@ const EditTodo = () => {
   })
 
   //Hooks
+  const dispatch = useDispatch()
 
   //Handlers
-    const handleClose = () => { }
+    const handleClose = () => {
+      dispatch(displayEditTodo({id: selectedTodo!.id, display: false}))
+      dispatch(clearSelectedTodo())
+    }
 
     const handleSubmit = () => {
         //Le submit doit d'une part éditer le Todo si besoin, et d'autre part fermer la modal.
         //par exemple pour changer le nolm du todo en pseudo code ça donnerait quelque chose comme :
         //if (todo.todo != newTodo.todo) { dispatch(changeTodoName(newTodo.todo))}
+        dispatch(editTodo(newTodo))
+        handleClose()
         //Debug
         //console.log(newTodo)
     }

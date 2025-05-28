@@ -7,6 +7,7 @@ import todoReducer from '../redux/todoSlice'
 import { TypedUseSelectorHook } from "react-redux";
 
 //Ici on initialise le store de l'application
+//C'est là où on met les Slices
 export const store = configureStore({
   reducer: {
     todo: todoReducer

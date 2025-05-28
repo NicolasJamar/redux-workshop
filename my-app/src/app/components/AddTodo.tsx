@@ -3,7 +3,7 @@ import { TodoType } from "../types"
 import { RootState, useSelector } from "../redux/store"
 import { useDispatch } from "react-redux"
 
-import { displayAddTodo } from "../redux/todoSlice"
+import { displayAddTodo, addTodo } from "../redux/todoSlice"
 
 
 const AddTodo = () => {
@@ -27,6 +27,8 @@ const AddTodo = () => {
   const handleSubmit = () => {
     //Le submit doit d'une part ajouter un nouveau todo, et d'autre part fermer la modal.
     //Vérifie bien que dans ton Slice tu as un reducer qui permet de créer un todo
+    dispatch(addTodo(newTodo))
+    dispatch(displayAddTodo(false))
     //Debug
     //console.log(newTodo)
   }
